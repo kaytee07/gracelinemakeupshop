@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="/img/PHOTO-2021-12-04-22-42-50.jpg" alt="" width="30" height="24"
+                class="d-inline-block align-text-top">
+            Graceline
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav">
+                    <a class="nav-link active" aria-current="page" href="/home">Home</a>        
+                    <a class="nav-link" href="/addnewproduct">Add product</a>
+                    <a class="nav-link" href="/inventory">Inventory</a>
+                    <a class="nav-link" href="/sell">sell</a>
+        </div>
+            <div class="navbar-nav " style="margin-left: auto;">
+                <%if(!currentUser) {%> 
+                    <a class="nav-link" href="/login">Login</a>
+                    <a class="nav-link" href="/signup">Signup</a>
+                <% }else {%> 
+                    <a class="nav-link" href="/logout">Logout</a>
+                <% } %> 
+            </div>
+        </div>
+    </div>
+</nav>

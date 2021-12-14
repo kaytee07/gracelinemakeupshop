@@ -1,0 +1,7 @@
+<% layout('boilerplate/boilerplate.ejs')  -%> 
+<h1>INVENTORY</h1>
+<div class="inventory">
+    <% for(let brand of brands) {%> 
+       <a href="inventory/<%- brand.name %>" class="btn btn-primary"><%- brand.name %> </a>
+        <% } %> 
+</div>

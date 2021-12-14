@@ -1,0 +1,12 @@
+<% layout('boilerplate/boilerplate.ejs') -%>
+<form action="/addnewproduct" method="POST">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name">
+    <label for="brand">Brand</label>
+    <input type="text" id="brand" name="brand">
+    <label for="price">Price</label>
+    <input type="number" id="price" name="price">
+    <label for="quantity">Quantity</label>
+    <input type="number" id="quantity" name="quantity">
+    <button>submit</button>
+</form>

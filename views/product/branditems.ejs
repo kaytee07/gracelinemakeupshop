@@ -1,0 +1,14 @@
+<% layout('boilerplate/boilerplate.ejs')  -%> 
+<ul>
+    <% for(product of brands.product) {%> 
+        <li>
+            <h3>product name:<%- product.name %> </h3>
+            <h4>product price: Ghc <%- product.price %></h4>
+            <h5>product quantity:<%- product.quantity %></h5>
+            <a href="/inventory/<%= product.brand  %>/<%= product.id  %>/update" class="btn btn-primary">restock</a>
+            <form action="/inventory/<%= product.brand %>/<%= product.id %>?_method=delete" method="post">
+            <button class="btn btn-danger">delete</button>
+            </form>
+        </li>
+    <% } %> 
+</ul>
