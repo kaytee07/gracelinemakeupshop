@@ -1,0 +1,13 @@
+<% layout('boilerplate/boilerplate.ejs') -%> 
+<div class="details">
+    <h1>More Info</h1>
+    <% for(let product of history.product) { %> 
+    <div>
+        <p>name: <span><%= product.name %></span></p>
+        <p>brand: <span><%= product.brand %></span></p>
+        <p>price for one: <span><%= product.price %></span></p>
+        <p>quantity: <span><%= product.quantity %> </span></p>
+    </div>
+    <% } %> 
+    <h3>total: <span><%= history.cartTotal %> </span></h3>
+</div>

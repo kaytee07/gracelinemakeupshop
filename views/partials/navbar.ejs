@@ -11,16 +11,34 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="/home">Home</a>        
+                <%=   %> 
+                <%if(currentUser){%> 
+                    <% if(currentUser.employeeType === "Administrator") {%> 
+                    <a class="nav-link active" aria-current="page" href="/home">Home</a>
                     <a class="nav-link" href="/addnewproduct">Add product</a>
                     <a class="nav-link" href="/inventory">Inventory</a>
                     <a class="nav-link" href="/sell">sell</a>
+                    <a class="nav-link" href="/getHistory">history</a>
+                    <% } else if(currentUser.employeeType === "Sales") { %> 
+                    <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                    <a class="nav-link" href="/sell">sell</a>
+                    <a class="nav-link" href="/getHistory">history</a>
+                    <% } else if(currentUser.employeeType ==="Stocks" ) { %>
+                    <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                    <a class="nav-link" href="/addnewproduct">Add product</a>
+                    <a class="nav-link" href="/inventory">Inventory</a>
+                    <a class="nav-link" href="/getHistory">history</a>
+                        <% } %>
+                    <% } %> 
         </div>
             <div class="navbar-nav " style="margin-left: auto;">
+
                 <%if(!currentUser) {%> 
                     <a class="nav-link" href="/login">Login</a>
-                    <a class="nav-link" href="/signup">Signup</a>
                 <% }else {%> 
+                    <% if(currentUser.employeeType==="Administrator" ) {%>
+                    <a class="nav-link" href="/signup">Signup</a>
+                    <% } %> 
                     <a class="nav-link" href="/logout">Logout</a>
                 <% } %> 
             </div>

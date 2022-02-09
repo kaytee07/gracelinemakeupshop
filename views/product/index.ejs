@@ -1,15 +1,97 @@
 <% layout('boilerplate/boilerplate.ejs') -%>
-<form action="/addproduct" method="get">
-    <div class="addproduct mb-3">
-        <a href="/addnewproduct" class="btn btn-warning">add new product</a>
-    </div>    
-    <div class=" mb-3">
-        <a href="/inventory" class="btn btn-primary">inventory</a>
+<link rel="stylesheet" href="styles/mainmenu.css">
+<div class="app">
+    <div class="menu mt-4">
+        <% if(currentUser.employeeType==="Administrator" ) {%>
+        <div class="row">
+            <div class="col-6 ">
+                <div class="card addproduct mb-4" style="width: 18rem;">
+                    <div class="card-body addproduct mb-3">
+                        <h5 class="card-title">Add product to inventory</h5>
+                        <a href="/addnewproduct" class="btn btn-primary">Add Product</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 ">
+                <div class="card addproduct mb-4" style="width: 18rem;">
+                    <div class="card-body addproduct mb-3">
+                        <h5 class="card-title">View Inventory</h5>
+                        <a href="/inventory" class="btn btn-primary">Inventory</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-6">
+                <div class="card addproduct mb-4" style="width: 18rem;">
+                    <div class="card-body addproduct mb-3">
+                        <h5 class="card-title">View History</h5>
+                        <a href="/getHistory" class="btn btn-primary">History</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card addproduct mb-4" style="width: 18rem;">
+                    <div class="card-body addproduct mb-3">
+                        <h5 class="card-title">Sell Product</h5>
+                        <a href="/sell" class="btn btn-primary">Sell</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% } else if(currentUser.employeeType==="Sales" ) { %>
+            <div class="row">
+                <div class="col-6">
+                    <div class="card addproduct mb-4" style="width: 18rem;">
+                        <div class="card-body addproduct mb-3">
+                            <h5 class="card-title">View History</h5>
+                            <a href="/getHistory" class="btn btn-primary">History</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card addproduct mb-4" style="width: 18rem;">
+                        <div class="card-body addproduct mb-3">
+                            <h5 class="card-title">Sell Product</h5>
+                            <a href="/sell" class="btn btn-primary">Sell</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% } else if(currentUser.employeeType==="Stocks" ) { %>
+            <div class="row">
+                <div class="col-6 ">
+                    <div class="card addproduct mb-4" style="width: 18rem;">
+                        <div class="card-body addproduct mb-3">
+                            <h5 class="card-title">Add product to inventory</h5>
+                            <a href="/addnewproduct" class="btn btn-primary">Add Product</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 ">
+                    <div class="card addproduct mb-4" style="width: 18rem;">
+                        <div class="card-body addproduct mb-3">
+                            <h5 class="card-title">View Inventory</h5>
+                            <a href="/inventory" class="btn btn-primary">Inventory</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-6">
+                    <div class="card addproduct mb-4" style="width: 18rem;">
+                        <div class="card-body addproduct mb-3">
+                            <h5 class="card-title">View History</h5>
+                            <a href="/getHistory" class="btn btn-primary">History</a>
+                        </div>
+                    </div>
+                </div>
+              
+            <% } %>
     </div>
-    <div class="history mb-3">
-        <a href="/history" class="btn btn-primary">history</a>
-    </div>
-    <div class="sell mb-3">
-        <a href="/sell" class="btn btn-primary">sell</a>
-    </div>
-</form>
+</div>
+</div>
+
+

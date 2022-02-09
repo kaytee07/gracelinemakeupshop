@@ -1,13 +1,30 @@
 <% layout('boilerplate/boilerplate.ejs')  -%>
 <div class="form">
-    <h1>Sign up</h1>
-    <form action="/signup" method="POST">
-        <label for="username">username</label>
-        <input id="username" type="username" name="username">
-        <label for="email">email</label>
-        <input id="email" type="email" name="email">
-        <label for="password">password</label>
-        <input id="password" type="password" name="password">
-        <button>sign up</button>
+    <h1 style="text-align: center;">Sign up</h1>
+    <div class="forms" style="max-width: 600px; margin: auto;">
+    <form action="/signup" method="POST">       
+            <div class="mb-3">
+                <label for="username" class="form-label">username</label>
+                <input  type="username" name="username" class="form-control" id="username" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">email</label>
+                <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label for="employeeType" class="form-label">employeeType</label>
+                <select class="form-select" aria-label="Default select example" name="employeeType">
+                    <option selected>Open this select menu</option>
+                    <option >Sales</option>
+                    <option >Administrator</option>
+                    <option >Stocks</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input  type="password" name="password"class="form-control" id="password">
+            </div>
+            <button  class="btn btn-primary">signup</button> 
     </form>
+    </div>
 </div> 

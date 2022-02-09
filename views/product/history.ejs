@@ -1,0 +1,22 @@
+<% layout('boilerplate/boilerplate.ejs') -%> 
+<div class="historypage">
+    <h1 style="text-align: center;">History</h1>
+    
+        <% for(let hist of history) {%> 
+            <div class="card mb-3" style="width: 600px; margin: auto;">  
+                <div class="card-body">
+                    <p>Date : <span>
+                            <%= hist.time %>
+                        </span></p>
+                    <p>Transaction Total : Ghc <span>
+                            <%= hist.cartTotal %>.00</spa>
+                    </p>
+                    <p>Number of purchases : <span>
+                            <%= hist.product.length %>
+                        </span></p>
+                    <a class="btn btn-primary" href="history/<%= hist.id %> ">View details</a> 
+                </div>
+            </div>
+        <% } %> 
+    
+</div>

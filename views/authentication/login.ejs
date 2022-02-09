@@ -1,11 +1,17 @@
 <% layout('boilerplate/boilerplate.ejs') -%>
     <div class="form">
-        <h1>Login</h1>
+        <h1 style="text-align: center">Login</h1>
+        <div class="forms" style="max-width: 600px; margin: auto;">
         <form action="/login" method="POST">
-            <label for="username">username</label>
-            <input id="username" type="username" name="username">
-            <label for="password">password</label>
-            <input id="password" type="password" name="password">
-            <button>Login</button>
+            <div class="mb-3">
+                <label for="username" class="form-label">username</label>
+                <input type="username" name="username" class="form-control" id="username" aria-describedby="emailHelp">
+            </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" name="password" class="form-control" id="password">
+        </div>
+            <button class="btn btn-primary">Login</button>
         </form>
+        </div>
     </div>

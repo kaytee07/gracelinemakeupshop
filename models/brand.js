@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const {Schema} = mongoose;
+const Products = require('../models/product');
+
 
 const brandSchema = new Schema({
     name:{
@@ -14,5 +16,13 @@ const brandSchema = new Schema({
         }
     ]
 })
+
+brandSchema.post("findByIdAndDelete", async function (brand) {
+  await Products.deleteMany({
+    _id: {
+      $in: brand.product,
+    },
+  });
+});
 
 module.exports = mongoose.model('Brand', brandSchema);

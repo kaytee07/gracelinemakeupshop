@@ -1,7 +1,20 @@
 <% layout('boilerplate/boilerplate.ejs')  -%> 
-<h1>INVENTORY</h1>
-<div class="inventory">
+<link rel="stylesheet" href="styles/inventory.css">
+<h1 style="text-align: center;">INVENTORY</h1>
+<div class="inventory" style="">
     <% for(let brand of brands) {%> 
-       <a href="inventory/<%- brand.name %>" class="btn btn-primary"><%- brand.name %> </a>
+        <div class="card mb-3" style="width: 17rem;">
+            <div class="card-body">
+                <h3> <%= brand.name %></h3>
+                <div class="buttons" style="display: flex;">
+                <a href="inventory/<%- brand.name %>" class="btn btn-primary mb-2" style="margin-right: 6px;">
+                   View products
+                </a>
+                <form action="/inventory/<%= brand._id %>?_method=delete" method="POST">
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+                </div>
+            </div>
+        </div>
         <% } %> 
 </div>

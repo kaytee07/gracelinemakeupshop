@@ -1,12 +1,41 @@
 <% layout('boilerplate/boilerplate.ejs') -%>
-<form action="/addnewproduct" method="POST">
-    <label for="name">Name</label>
-    <input type="text" id="name" name="name">
-    <label for="brand">Brand</label>
-    <input type="text" id="brand" name="brand">
-    <label for="price">Price</label>
-    <input type="number" id="price" name="price">
-    <label for="quantity">Quantity</label>
-    <input type="number" id="quantity" name="quantity">
-    <button>submit</button>
-</form>
+<link rel="stylesheet" href="styles/form.css">
+<h3 class="head">Add new product</h3>
+<div class="app">
+    <div class="forms">
+        <form class=" g-3 needs-validation" action="/addnewproduct" method="POST" novalidate>
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+        
+            <div class="mb-3">
+                <label for="brand" class="form-label">Brand</label>
+                <input type="text" class="form-control" id="brand" name="brand" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+        
+            <div class="mb-3">
+                <label for="price" class="form-label">Price</label>
+                <input type="text" class="form-control" id="price" name="price" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+        
+            <div class="mb-3">
+                <label for="quantity" class="form-label">Quantity</label>
+                <input type="text" class="form-control" id="quantity" name="quantity" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <button class="btn btn-primary">submit</button>
+        </form>
+    </div>
+</div>

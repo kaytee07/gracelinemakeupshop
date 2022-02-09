@@ -87,7 +87,8 @@ app.get('/addnewproduct', isLoggedIn,(req, res)=> {
 
 app.post("/addnewproduct", isLoggedIn, catchAsync(async(req, res, next) => { 
   
-    const { name, brand, quantity, price } = req.body;
+    const { name, quantity, price } = req.body;
+    let brand = req.body.brand.toLowerCase()
     let product = new Product({ name, brand, quantity, price });
     await product.save();
        product.author = req.user._id;
@@ -135,18 +136,19 @@ app.post('/sell', isLoggedIn, catchAsync(async(req, res)=>{
   res.redirect('/sell')
 }));
 
+app.get('/getHistory', async(req, res)=>{
+  const history = await History.find({});
+  res.render('product/history', {history})
+})
+
 app.post('/history', async(req, res)=>{
   const {cartTotal, itemsSold} = req.body;
   const history = new History({
     cartTotal:cartTotal,
   })
-
-  await history.save()
-
-   const items = JSON.parse(itemsSold)
- 
-
-  const updateHistory = await History.findByIdAndUpdate(
+await history.save()
+const items = JSON.parse(itemsSold)
+const updateHistory = await History.findByIdAndUpdate(
     { _id: history.id },
     {
       $push: {
@@ -156,8 +158,20 @@ app.post('/history', async(req, res)=>{
   );
 
   console.log(updateHistory)
- // const updateHistory = req
  
+ 
+})
+
+app.get('/history/:id', async(req, res)=> {
+   const history = await History.findById(req.params.id);
+   res.render('product/historydetails', {history})
+})
+
+app.delete('/inventory/:id', async (req, res)=>{
+    const deleteBrand = await Brand.findById(req.params.id)
+    await Product.deleteMany({brand:deleteBrand.name})
+    await Brand.findByIdAndDelete(req.params.id);
+    res.redirect('/inventory')
 })
 
 app.get('/inventory/:brand', isLoggedIn, catchAsync(async(req, res)=>{
@@ -174,7 +188,10 @@ app.get('/inventory/:brand/:id/update', isLoggedIn, catchAsync(async(req, res)=>
 
 app.put("/inventory/:brand/:id/update", isLoggedIn, catchAsync(async(req, res)=>{
     const { id } = req.params;
-    const product = await Product.findByIdAndUpdate(id, req.body,{runValidators:true});
+    const product = await Product.findById(id);
+    product.quantity+= Number(req.body.quantity)
+    product.save()
+    console.log(product)
     req.flash("success", "product restocked");
     res.redirect(`/inventory/${req.params.brand}`)
 }));
@@ -182,14 +199,11 @@ app.put("/inventory/:brand/:id/update", isLoggedIn, catchAsync(async(req, res)=>
 app.delete('/inventory/:brand/:id', catchAsync(async(req, res)=>{
   const {id, brand} = req.params;
   const product = await Product.findByIdAndDelete(id)
-  const brandName = await Brand.findByIdAndUpdate(id,{
-    $pull:{
-      product:{
-        _id:id
-      }
-    }
-  })
-
+  const brandName = await Brand.findOneAndUpdate({name:brand},{
+    $pull:{product:id}
+    
+  },{new:true})
+  console.log(brandName)
   res.redirect(`/inventory/${brand}`);
 
 }))
@@ -200,9 +214,9 @@ app.get('/signup',(req, res)=>{
 
 app.post('/signup', catchAsync(async(req, res)=>{
   try{
-     const {username, email, password} = req.body;
+     const {username, email, employeeType, password} = req.body;
   console.log(req.body)
-  const user = new User({email, username});
+  const user = new User({email, username, employeeType});
   const registeredUser = await User.register(user, password);
   req.login(registeredUser, err=>{
     if(err) console.log(err)
