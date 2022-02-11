@@ -1,0 +1,27 @@
+<% layout('boilerplate/boilerplate.ejs') -%> 
+<div class="historypage">
+    <h1 style="text-align: center;">Users</h1>
+    <% for(let user of users) {%>
+        <div class="card mb-3" style="width: 600px; margin: auto;">
+            <div class="card-body">
+                <h5>Name : <span>
+                        <%= user.username %>
+                    </span></h5>
+                <p>Email : <span>
+                        <%= user.email %></span>
+                </p>
+                <p>Employee Type : <span>
+                        <%= user.employeeType %>
+                    </span>
+                </p>
+                <% if(user.employeeType !== 'Administrator') {%> 
+                    <form action="/users/<%= user._id %>?_method=delete" method="POST">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                    <% } %> 
+            </div>
+        </div>
+        <% } %>
+      
+    
+</div>

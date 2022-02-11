@@ -119,6 +119,22 @@ app.get('/history', isLoggedIn,async (req, res)=>{
   res.render('product/history')
 })
 
+app.get("/users", isLoggedIn, catchAsync(async(req, res) => {
+  const users = await User.find({});
+  res.render("product/users", {users});
+}));
+
+app.delete(
+  "/users/:id",
+  isLoggedIn,
+  catchAsync(async (req, res) => {
+    const {id} = req.params
+    const user = await User.findByIdAndDelete(id);
+    res.redirect("/users");
+  })
+);
+
+
 app.get("/sell", isLoggedIn, catchAsync(async (req, res) => {
   const product = await Product.find({});
   const brand  =  await Brand.find({});
